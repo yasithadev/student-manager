@@ -1,7 +1,8 @@
 package com.example.student.model;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
+
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity

@@ -1,5 +1,8 @@
 package com.example.student.service;
 
+import com.example.student.dto.StudentDTO;
+import com.example.student.model.Student;
+import com.example.student.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +15,15 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    // Other methods...
+    public StudentDTO createStudent(StudentDTO studentDto) {
+        Student student = new Student();
+        student.setFirstName(studentDto.getFirstName());
+        student.setLastName(studentDto.getLastName());
+        student.setAge(studentDto.getAge());
+        student.setMarks(studentDto.getMarks());
+        student = studentRepository.save(student);
+        return convertToDTO(student);
+    }
 
     public List<StudentDTO> getAllStudents() {
         return studentRepository.findAll().stream()
@@ -37,4 +48,6 @@ public class StudentService {
         dto.setMarks(student.getMarks());
         return dto;
     }
+
+
 }
